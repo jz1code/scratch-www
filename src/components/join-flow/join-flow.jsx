@@ -250,7 +250,9 @@ class JoinFlow extends React.Component {
                     <Progression step={this.state.step}>
                         <UsernameStep
                             sendAnalytics={this.sendAnalytics}
-                            onNextStep={this.handleAdvanceStep}
+                            // modified by joe
+                            onNextStep={this.handlePrepareToRegister}
+                            // onNextStep={this.handleAdvanceStep}
                         />
                         <CountryStep
                             sendAnalytics={this.sendAnalytics}

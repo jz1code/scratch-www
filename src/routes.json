@@ -1,5 +1,13 @@
 [
     {
+        "name": "mobile",
+        "pattern": "^/mobile(/editor|(/\\d+(/editor|/fullscreen)?)?)?/?(\\?.*)?$",
+        "routeAlias": "/mobile/?$",
+        "view": "preview/mobile-preview",
+        "title": "手机端",
+        "dynamicMetaTags": true
+    },
+    {
         "name": "about",
         "pattern": "^/about/?$",
         "routeAlias": "/about/?$",

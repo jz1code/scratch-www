@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if lt IE 9 ]> <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]> <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html> <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=<%= htmlWebpackPlugin.options.viewportWidth %>, initial-scale=1">
+
+        <!-- Prevent mobile Safari from making phone numbers -->
+        <meta name="format-detection" content="telephone=no">
+
+        <% if (!htmlWebpackPlugin.options.dynamicMetaTags) { %>
+            <title>Scratch - <%= htmlWebpackPlugin.options.title %></title>
+
+        <% } %>
+
+        <!-- Favicon & CSS normalize -->
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="/css/lib/normalize.min.css" />
+
+        <!-- Polyfills -->
+        <script src="/js/polyfill.min.js"></script>
+    </head>
+
+    <body>
+        <div id="app"></div>
+
+        <!-- Vendor & Initialize (Session & Localization)-->
+        <script src="/<%= htmlWebpackPlugin.files.chunks.common.entry %>"></script>
+
+        <!-- Scripts -->
+        <script src="/js/<%= htmlWebpackPlugin.options.route.name %>.intl.js"></script>
+        <script src="/<%= htmlWebpackPlugin.files.chunks[htmlWebpackPlugin.options.route.name].entry %>"></script>
+
+        <!-- Translate title element -->
+        <% if (!htmlWebpackPlugin.options.dynamicMetaTags) { %>
+            <script>
+                var loc = window._locale || 'en';
+                if (typeof window._messages !== 'undefined' && loc !== 'en') {
+                    if (typeof window._messages[loc] === 'undefined') {
+                        loc = loc.split('-')[0];
+                    }
+                    if (typeof window._messages[loc] !== 'undefined') {
+                        var localizedTitle = window._messages[loc]['general.' + '<%= htmlWebpackPlugin.options.title %>'.toLowerCase()] || '';
+                        if (localizedTitle.length > 0) {
+                            document.title = 'Scratch - ' + localizedTitle;
+                        }
+                    }
+                }
+            </script>
+        <% } %>
+    </body>
+</html>

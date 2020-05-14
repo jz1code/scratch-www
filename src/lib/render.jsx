@@ -22,7 +22,7 @@ require('../main.scss');
  */
 const render = (jsx, element, reducers, initialState, enhancer) => {
     // Get locale and messages from global namespace (see "init.js")
-    let locale = window._locale || 'en';
+    let locale = window._locale || 'zh-cn';
     let messages = {};
     if (typeof window._messages !== 'undefined') {
         if (typeof window._messages[locale] === 'undefined') {
@@ -31,7 +31,7 @@ const render = (jsx, element, reducers, initialState, enhancer) => {
         }
         if (typeof window._messages[locale] === 'undefined') {
             // Language appears to not be supported – fall back to 'en'
-            locale = 'en';
+            locale = 'zh-cn';
         }
         messages = window._messages[locale];
     }

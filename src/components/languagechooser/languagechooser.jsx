@@ -55,7 +55,7 @@ LanguageChooser.propTypes = {
 
 LanguageChooser.defaultProps = {
     languages: languages,
-    locale: 'en'
+    locale: 'zh-cn'
 };
 
 module.exports = LanguageChooser;

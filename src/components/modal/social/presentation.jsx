@@ -82,7 +82,7 @@ const SocialModalPresentation = ({
                     <FlexRow className="social-row social-spaced-row">
                         <FlexRow className="social-label-row">
                             <div className="social-label-title">
-                                {intl.formatMessage({id: 'social.embedLabel'})}
+                                手机分享链接
                             </div>
                             <FlexRow className="social-spaced-row social-row-right">
                                 <div
@@ -98,7 +98,7 @@ const SocialModalPresentation = ({
                                     <a
                                         onClick={onCopyEmbed}
                                     >
-                                        {intl.formatMessage({id: 'social.copyEmbedLinkText'})}
+                                        复制分享到微信
                                     </a>
                                 </div>
                             </FlexRow>

@@ -413,6 +413,23 @@ $stage-width: 480px;
         > .description-block:last-child {
             margin-bottom: 0;
         }
+
+        > .project-share {
+            flex-direction: row;
+            align-items: flex-start;
+            width: 100%;
+            > .qrcode {
+                width: 80px;
+                position: relative;
+            }   
+            > .notes {
+                flex: 1;
+                margin-left: 50px;
+            }
+            .project-description {
+                width: calc(100% - (1rem + 2px));
+            }
+        }
     }
 
     .remix-credit {

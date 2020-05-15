@@ -31,7 +31,7 @@ const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
 const thumbnailUrl = require('../../lib/user-thumbnail');
 const FormsyProjectUpdater = require('./formsy-project-updater.jsx');
-
+const QRCode = require('qrcode.react');
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
@@ -448,58 +448,67 @@ const PreviewPresentation = ({
                                         }
                                     </div>
                                 )}
-                                {showNotesAndCredits && (
-                                    <div className="description-block">
-                                        <div className="project-textlabel">
-                                            <FormattedMessage id="project.notesAndCreditsLabel" />
-                                        </div>
-                                        {editable ?
-                                            <FormsyProjectUpdater
-                                                field="description"
-                                                initialValue={projectInfo.description}
-                                            >
-                                                {(value, ref, handleUpdate) => (
-                                                    <Formsy
-                                                        className="project-description-form"
-                                                        ref={ref}
-                                                        onKeyPress={onKeyPress}
-                                                    >
-                                                        <InplaceInput
-                                                            className={classNames(
-                                                                'project-description-edit',
-                                                                'last',
-                                                                {remixes: parentInfo && parentInfo.author}
-                                                            )}
-                                                            handleUpdate={handleUpdate}
-                                                            name="description"
-                                                            placeholder={intl.formatMessage({
-                                                                id: 'project.notesPlaceholder'
-                                                            })}
-                                                            type="textarea"
-                                                            validationErrors={{
-                                                                maxLength: intl.formatMessage({
-                                                                    id: 'project.descriptionMaxLength'
-                                                                })
-                                                            }}
-                                                            validations={{
-                                                                maxLength: 5000
-                                                            }}
-                                                            value={value}
-                                                        />
-                                                    </Formsy>
-                                                )}
-                                            </FormsyProjectUpdater> :
-                                            <div className="project-description">
-                                                {decorateText(projectInfo.description, {
-                                                    usernames: true,
-                                                    hashtags: true,
-                                                    scratchLinks: true
-                                                })}
-                                            </div>
-                                        }
+                                <FlexRow className="project-share">
+                                    <div className="qrcode">
+                                        <QRCode
+                                            size="80"
+                                            value={`https://sc.jzcode.cn/mobile/${projectId}`}
+                                        />
                                     </div>
-                                )}
-                                {/*  eslint-enable max-len */}
+                            
+                                    {showNotesAndCredits && (
+                                        <div className="description-block notes">
+                                            <div className="project-textlabel">
+                                                <FormattedMessage id="project.notesAndCreditsLabel" />
+                                            </div>
+                                            {editable ?
+                                                <FormsyProjectUpdater
+                                                    field="description"
+                                                    initialValue={projectInfo.description}
+                                                >
+                                                    {(value, ref, handleUpdate) => (
+                                                        <Formsy
+                                                            className="project-description-form"
+                                                            ref={ref}
+                                                            onKeyPress={onKeyPress}
+                                                        >
+                                                            <InplaceInput
+                                                                className={classNames(
+                                                                    'project-description-edit',
+                                                                    'last',
+                                                                    {remixes: parentInfo && parentInfo.author}
+                                                                )}
+                                                                handleUpdate={handleUpdate}
+                                                                name="description"
+                                                                placeholder={intl.formatMessage({
+                                                                    id: 'project.notesPlaceholder'
+                                                                })}
+                                                                type="textarea"
+                                                                validationErrors={{
+                                                                    maxLength: intl.formatMessage({
+                                                                        id: 'project.descriptionMaxLength'
+                                                                    })
+                                                                }}
+                                                                validations={{
+                                                                    maxLength: 5000
+                                                                }}
+                                                                value={value}
+                                                            />
+                                                        </Formsy>
+                                                    )}
+                                                </FormsyProjectUpdater> :
+                                                <div className="project-description">
+                                                    {decorateText(projectInfo.description, {
+                                                        usernames: true,
+                                                        hashtags: true,
+                                                        scratchLinks: true
+                                                    })}
+                                                </div>
+                                            }
+                                        </div>
+                                    )}
+                                    {/*  eslint-enable max-len */}
+                                </FlexRow>
                             </FlexRow>
                         </FlexRow>
                         <MediaQuery minWidth={frameless.tabletPortrait}>

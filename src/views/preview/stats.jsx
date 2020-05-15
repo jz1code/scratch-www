@@ -35,12 +35,6 @@ const Stats = props => (
         >
             {props.projectInfo.stats.views}
         </div>
-        <div
-            className="project-qrcode"
-            key="qrcode"
-        >
-            分享
-        </div>
     </FlexRow>
 );
 

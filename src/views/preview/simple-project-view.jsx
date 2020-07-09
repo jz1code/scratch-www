@@ -11,23 +11,22 @@ const parser = require('scratch-parser');
 const queryString = require('query-string');
 
 const api = require('../../lib/api');
-// const Page = require('../../components/page/www/page.jsx');
 const storage = require('../../lib/storage.js').default;
 const log = require('../../lib/log');
 const jar = require('../../lib/jar.js');
 const thumbnailUrl = require('../../lib/user-thumbnail');
 const ProjectInfo = require('../../lib/project-info');
-const PreviewPresentation = require('./mobile-presentation.jsx');
+const PreviewPresentation = require('./simple-presentation.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
 // const Registration = require('../../components/registration/registration.jsx');
 // const Scratch3Registration = require('../../components/registration/scratch3-registration.jsx');
 // const ConnectedLogin = require('../../components/login/connected-login.jsx');
 // const CanceledDeletionModal = require('../../components/login/canceled-deletion-modal.jsx');
-// const NotAvailable = require('../../components/not-available/not-available.jsx');
-// const Meta = require('./meta.jsx');
+const NotAvailable = require('../../components/not-available/not-available.jsx');
+const Meta = require('./meta.jsx');
 
 const sessionActions = require('../../redux/session.js');
-// const navigationActions = require('../../redux/navigation.js');
+const navigationActions = require('../../redux/navigation.js');
 const previewActions = require('../../redux/preview.js');
 
 const frameless = require('../../lib/frameless');
@@ -694,111 +693,92 @@ class Preview extends React.Component {
     //     );
     // }
     render () {
-        // if (this.props.projectNotAvailable || this.state.invalidProject) {
-        //     return (
-        //         <Page>
-        //             <div className="preview">
-        //                 <NotAvailable />
-        //             </div>
-        //         </Page>
-        //     );
-        // }
-
         return (
             <React.Fragment>
-                {/* <Meta projectInfo={this.props.projectInfo} /> */}
-                
-                    {/* <Page
-                        className={classNames({
-                            'page-has-admin-panel': this.props.isAdmin,
-                            'admin-panel-open': this.state.adminPanelOpen
-                        })}
-                    > */}
-                        <PreviewPresentation
-                            addToStudioOpen={this.state.addToStudioOpen}
-                            adminModalOpen={this.state.adminModalOpen}
-                            adminPanelOpen={this.state.adminPanelOpen}
-                            assetHost={this.props.assetHost}
-                            authorUsername={this.props.authorUsername}
-                            backpackHost={this.props.backpackHost}
-                            canAddToStudio={this.props.canAddToStudio}
-                            canDeleteComments={this.props.isAdmin || this.props.userOwnsProject}
-                            canRemix={this.props.canRemix}
-                            canReport={this.props.canReport}
-                            canRestoreComments={this.props.isAdmin}
-                            canSave={this.props.canSave}
-                            canShare={this.props.canShare || this.props.isAdmin}
-                            canToggleComments={this.props.canToggleComments}
-                            canUseBackpack={this.props.canUseBackpack}
-                            cloudHost={this.props.cloudHost}
-                            comments={this.props.comments}
-                            editable={this.props.isEditable}
-                            extensions={this.state.extensions}
-                            faved={this.state.clientFaved}
-                            favoriteCount={this.state.favoriteCount}
-                            isAdmin={this.props.isAdmin}
-                            isFullScreen={this.props.fullScreen}
-                            isLoggedIn={this.props.isLoggedIn}
-                            isNewScratcher={this.props.isNewScratcher}
-                            isProjectLoaded={this.state.isProjectLoaded}
-                            isRemixing={this.state.isRemixing}
-                            isScratcher={this.props.isScratcher}
-                            isShared={this.props.isShared}
-                            justRemixed={this.state.justRemixed}
-                            justShared={this.state.justShared}
-                            loveCount={this.state.loveCount}
-                            loved={this.state.clientLoved}
-                            modInfo={this.state.modInfo}
-                            moreCommentsToLoad={this.props.moreCommentsToLoad}
-                            originalInfo={this.props.original}
-                            parentInfo={this.props.parent}
-                            projectHost={this.props.projectHost}
-                            projectId={this.state.projectId}
-                            projectInfo={this.props.projectInfo}
-                            projectStudios={this.props.projectStudios}
-                            remixes={this.props.remixes}
-                            replies={this.props.replies}
-                            reportOpen={this.state.reportOpen}
-                            showAdminPanel={this.props.isAdmin}
-                            showCloudDataAlert={this.state.showCloudDataAlert}
-                            showModInfo={this.props.isAdmin}
-                            showUsernameBlockAlert={this.state.showUsernameBlockAlert}
-                            singleCommentId={this.state.singleCommentId}
-                            socialOpen={this.state.socialOpen}
-                            userOwnsProject={this.props.userOwnsProject}
-                            visibilityInfo={this.props.visibilityInfo}
-                            // onAddComment={this.handleAddComment}
-                            // onAddToStudioClicked={this.handleAddToStudioClick}
-                            // onAddToStudioClosed={this.handleAddToStudioClose}
-                            // onCloseAdminPanel={this.handleCloseAdminPanel}
-                            // onDeleteComment={this.handleDeleteComment}
-                            // onFavoriteClicked={this.handleFavoriteToggle}
-                            onGreenFlag={this.handleGreenFlag}
-                            // onLoadMore={this.handleLoadMore}
-                            // onLoadMoreReplies={this.handleLoadMoreReplies}
-                            // onLoveClicked={this.handleLoveToggle}
-                            // onOpenAdminPanel={this.handleOpenAdminPanel}
-                            onProjectLoaded={this.handleProjectLoaded}
-                            // onRemix={this.handleRemix}
-                            // onRemixing={this.handleIsRemixing}
-                            // onReportClicked={this.handleReportClick}
-                            // onReportClose={this.handleReportClose}
-                            // onReportComment={this.handleReportComment}
-                            // onReportSubmit={this.handleReportSubmit}
-                            // onRestoreComment={this.handleRestoreComment}
-                            // onSeeAllComments={this.handleSeeAllComments}
-                            // onSeeInside={this.handleSeeInside}
-                            onSetProjectThumbnailer={this.handleSetProjectThumbnailer}
-                            // onShare={this.handleShare}
-                            // onSocialClicked={this.handleSocialClick}
-                            // onSocialClosed={this.handleSocialClose}
-                            // onToggleComments={this.handleToggleComments}
-                            // onToggleStudio={this.handleToggleStudio}
-                            // onUpdateProjectData={this.handleUpdateProjectData}
-                            // onUpdateProjectId={this.handleUpdateProjectId}
-                            onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
-                        />
-                    {/* </Page>  */}
+                <PreviewPresentation
+                    addToStudioOpen={this.state.addToStudioOpen}
+                    adminModalOpen={this.state.adminModalOpen}
+                    adminPanelOpen={this.state.adminPanelOpen}
+                    assetHost={this.props.assetHost}
+                    authorUsername={this.props.authorUsername}
+                    backpackHost={this.props.backpackHost}
+                    canAddToStudio={this.props.canAddToStudio}
+                    canDeleteComments={this.props.isAdmin || this.props.userOwnsProject}
+                    canRemix={this.props.canRemix}
+                    canReport={this.props.canReport}
+                    canRestoreComments={this.props.isAdmin}
+                    canSave={this.props.canSave}
+                    canShare={this.props.canShare || this.props.isAdmin}
+                    canToggleComments={this.props.canToggleComments}
+                    canUseBackpack={this.props.canUseBackpack}
+                    cloudHost={this.props.cloudHost}
+                    comments={this.props.comments}
+                    editable={this.props.isEditable}
+                    extensions={this.state.extensions}
+                    faved={this.state.clientFaved}
+                    favoriteCount={this.state.favoriteCount}
+                    isAdmin={this.props.isAdmin}
+                    isFullScreen={this.props.fullScreen}
+                    isLoggedIn={this.props.isLoggedIn}
+                    isNewScratcher={this.props.isNewScratcher}
+                    isProjectLoaded={this.state.isProjectLoaded}
+                    isRemixing={this.state.isRemixing}
+                    isScratcher={this.props.isScratcher}
+                    isShared={this.props.isShared}
+                    justRemixed={this.state.justRemixed}
+                    justShared={this.state.justShared}
+                    loveCount={this.state.loveCount}
+                    loved={this.state.clientLoved}
+                    modInfo={this.state.modInfo}
+                    moreCommentsToLoad={this.props.moreCommentsToLoad}
+                    originalInfo={this.props.original}
+                    parentInfo={this.props.parent}
+                    projectHost={this.props.projectHost}
+                    projectId={this.state.projectId}
+                    projectInfo={this.props.projectInfo}
+                    projectStudios={this.props.projectStudios}
+                    remixes={this.props.remixes}
+                    replies={this.props.replies}
+                    reportOpen={this.state.reportOpen}
+                    showAdminPanel={this.props.isAdmin}
+                    showCloudDataAlert={this.state.showCloudDataAlert}
+                    showModInfo={this.props.isAdmin}
+                    showUsernameBlockAlert={this.state.showUsernameBlockAlert}
+                    singleCommentId={this.state.singleCommentId}
+                    socialOpen={this.state.socialOpen}
+                    userOwnsProject={this.props.userOwnsProject}
+                    visibilityInfo={this.props.visibilityInfo}
+                    onAddComment={this.handleAddComment}
+                    onAddToStudioClicked={this.handleAddToStudioClick}
+                    onAddToStudioClosed={this.handleAddToStudioClose}
+                    onCloseAdminPanel={this.handleCloseAdminPanel}
+                    onDeleteComment={this.handleDeleteComment}
+                    onFavoriteClicked={this.handleFavoriteToggle}
+                    onGreenFlag={this.handleGreenFlag}
+                    onLoadMore={this.handleLoadMore}
+                    onLoadMoreReplies={this.handleLoadMoreReplies}
+                    onLoveClicked={this.handleLoveToggle}
+                    onOpenAdminPanel={this.handleOpenAdminPanel}
+                    onProjectLoaded={this.handleProjectLoaded}
+                    onRemix={this.handleRemix}
+                    onRemixing={this.handleIsRemixing}
+                    onReportClicked={this.handleReportClick}
+                    onReportClose={this.handleReportClose}
+                    onReportComment={this.handleReportComment}
+                    onReportSubmit={this.handleReportSubmit}
+                    onRestoreComment={this.handleRestoreComment}
+                    onSeeAllComments={this.handleSeeAllComments}
+                    onSeeInside={this.handleSeeInside}
+                    onSetProjectThumbnailer={this.handleSetProjectThumbnailer}
+                    onShare={this.handleShare}
+                    onSocialClicked={this.handleSocialClick}
+                    onSocialClosed={this.handleSocialClose}
+                    onToggleComments={this.handleToggleComments}
+                    onToggleStudio={this.handleToggleStudio}
+                    onUpdateProjectData={this.handleUpdateProjectData}
+                    onUpdateProjectId={this.handleUpdateProjectId}
+                    onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
+                />
             </React.Fragment>
         );
     }

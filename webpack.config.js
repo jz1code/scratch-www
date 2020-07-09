@@ -57,7 +57,8 @@ let entry = {
         'redux',
         // Init
         './src/init.js'
-    ]
+    ],
+    'mobile.player': './src/views/preview/mobile-preview.jsx'
 };
 routes.forEach(function (route) {
     if (!route.redirect) {
@@ -183,22 +184,17 @@ module.exports = {
                 'process.env.SCRATCH_ENV': '"' + (process.env.SCRATCH_ENV || 'development') + '"',
                 'process.env.SENTRY_DSN': '"' + (process.env.SENTRY_DSN || '') + '"'
             }),
-            // new webpack.DefinePlugin({
-            //     'process.env.NODE_ENV': '"' + (process.env.NODE_ENV || 'development') + '"',
-            //     'process.env.API_HOST': '"' + (process.env.API_HOST || 'https://api.scratch.mit.edu') + '"',
-            //     'process.env.RECAPTCHA_SITE_KEY': '"' +
-            //             (process.env.RECAPTCHA_SITE_KEY || '6Lf6kK4UAAAAABKTyvdSqgcSVASEnMrCquiAkjVW') + '"',
-            //     'process.env.ASSET_HOST': '"' + (process.env.ASSET_HOST || 'https://assets.scratch.mit.edu') + '"',
-            //     'process.env.BACKPACK_HOST': '"' + (process.env.BACKPACK_HOST || 'https://backpack.scratch.mit.edu') + '"',
-            //     'process.env.CLOUDDATA_HOST': '"' + (process.env.CLOUDDATA_HOST || 'clouddata.scratch.mit.edu') + '"',
-            //     'process.env.PROJECT_HOST': '"' + (process.env.PROJECT_HOST || 'https://projects.scratch.mit.edu') + '"',
-            //     'process.env.STATIC_HOST': '"' + (process.env.STATIC_HOST || 'https://cdn2.scratch.mit.edu') + '"',
-            //     'process.env.SCRATCH_ENV': '"' + (process.env.SCRATCH_ENV || 'development') + '"',
-            //     'process.env.SENTRY_DSN': '"' + (process.env.SENTRY_DSN || '') + '"'
-            // }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'common',
                 filename: 'js/common.bundle.js'
             })
+        ])
+        .concat([
+            new HtmlWebpackPlugin({
+                chunks: ['mobile.player'],
+                template: 'src/mobile-template.ejs',
+                filename: 'mobile-preview.html',
+                title: '手机'
+            }),
         ])
 };

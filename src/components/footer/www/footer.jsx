@@ -208,7 +208,7 @@ const Footer = props => (
                 </dl>
             </div>
         </MediaQuery>
-        <LanguageChooser locale={props.intl.locale} />
+        {/* <LanguageChooser locale={props.intl.locale} /> */}
     </FooterBox>
 );
 

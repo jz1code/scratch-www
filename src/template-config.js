@@ -8,7 +8,8 @@
 
 module.exports = {
     // html-webpack-plugin options
-    template: './src/template.ejs',
+    // template: './src/template.ejs',
+    template: './src/mobile-template.ejs',
     inject: false,
 
     // Search and metadata

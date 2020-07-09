@@ -117,7 +117,7 @@ class Navigation extends React.Component {
                     </li>
                     <li className="link about">
                         <a href="/about">
-                            <FormattedMessage id="general.about" />
+                            我的课堂
                         </a>
                     </li>
 
@@ -138,23 +138,6 @@ class Navigation extends React.Component {
                     </li>
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
                         this.props.user ? [
-                            <li
-                                className="link right messages"
-                                key="messages"
-                            >
-                                <a
-                                    href="/messages/"
-                                    title={this.props.intl.formatMessage({id: 'general.messages'})}
-                                >
-                                    <span
-                                        className={classNames({
-                                            'message-count': true,
-                                            'show': this.props.unreadMessageCount > 0
-                                        })}
-                                    >{this.props.unreadMessageCount} </span>
-                                    <FormattedMessage id="general.messages" />
-                                </a>
-                            </li>,
                             <li
                                 className="link right mystuff"
                                 key="mystuff"

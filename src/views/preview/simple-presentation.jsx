@@ -15,19 +15,7 @@ const IntlGUI = injectIntl(GUI);
 const decorateText = require('../../lib/decorate-text.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 
-// const ModInfo = require('./mod-info.jsx');
-// const RemixCredit = require('./remix-credit.jsx');
-
-// const Stats = require('./stats.jsx');
-
-// const Subactions = require('./subactions.jsx');
-// const InplaceInput = require('../../components/forms/inplace-input.jsx');
-// const ToggleSlider = require('../../components/forms/toggle-slider.jsx');
-// const TopLevelComment = require('./comment/top-level-comment.jsx');
-// const ComposeComment = require('./comment/compose-comment.jsx');
-// const ExtensionChip = require('./extension-chip.jsx');
 const thumbnailUrl = require('../../lib/user-thumbnail');
-// const FormsyProjectUpdater = require('./formsy-project-updater.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./mobile-preview.scss');
@@ -63,51 +51,51 @@ const PreviewPresentation = ({
     cloudHost,
     comments,
     editable,
-    extensions,
-    faved,
-    favoriteCount,
-    intl,
-    isAdmin,
+    // extensions,
+    // faved,
+    // favoriteCount,
+    // intl,
+    // isAdmin,
     isFullScreen,
-    isLoggedIn,
-    isNewScratcher,
-    isProjectLoaded,
-    isRemixing,
+    // isLoggedIn,
+    // isNewScratcher,
+    // isProjectLoaded,
+    // isRemixing,
     isScratcher,
-    isShared,
-    justRemixed,
-    justShared,
-    loveCount,
-    loved,
-    modInfo,
-    moreCommentsToLoad,
-    onAddComment,
-    onAddToStudioClicked,
-    onAddToStudioClosed,
-    onCloseAdminPanel,
-    onDeleteComment,
-    onFavoriteClicked,
+    // isShared,
+    // justRemixed,
+    // justShared,
+    // loveCount,
+    // loved,
+    // modInfo,
+    // moreCommentsToLoad,
+    // onAddComment,
+    // onAddToStudioClicked,
+    // onAddToStudioClosed,
+    // onCloseAdminPanel,
+    // onDeleteComment,
+    // onFavoriteClicked,
     onGreenFlag,
-    onLoadMore,
-    onLoadMoreReplies,
-    onLoveClicked,
-    onOpenAdminPanel,
+    // onLoadMore,
+    // onLoadMoreReplies,
+    // onLoveClicked,
+    // onOpenAdminPanel,
     onProjectLoaded,
-    onRemix,
-    onRemixing,
-    onReportClicked,
-    onReportClose,
-    onReportComment,
-    onReportSubmit,
-    onRestoreComment,
-    onSeeAllComments,
-    onSeeInside,
+    // onRemix,
+    // onRemixing,
+    // onReportClicked,
+    // onReportClose,
+    // onReportComment,
+    // onReportSubmit,
+    // onRestoreComment,
+    // onSeeAllComments,
+    // onSeeInside,
     onSetProjectThumbnailer,
-    onShare,
-    onSocialClicked,
-    onSocialClosed,
-    onToggleComments,
-    onToggleStudio,
+    // onShare,
+    // onSocialClicked,
+    // onSocialClosed,
+    // onToggleComments,
+    // onToggleStudio,
     onUpdateProjectData,
     onUpdateProjectId,
     onUpdateProjectThumbnail,
@@ -157,17 +145,6 @@ const PreviewPresentation = ({
                                 </div>
                             </FlexRow>
                         </FlexRow>
-                        {/* <FlexRow className="project-notes">
-                                <div className="description-block">
-                                    <div className="project-description">
-                                        {decorateText(projectInfo.instructions, {
-                                            usernames: true,
-                                            hashtags: true,
-                                            scratchLinks: true
-                                        })}
-                                    </div>
-                                </div>
-                        </FlexRow> */}
                         <FlexRow className="preview-row">
                             <div
                                 className={classNames(
@@ -192,7 +169,7 @@ const PreviewPresentation = ({
                                     projectId={projectId}
                                     onGreenFlag={onGreenFlag}
                                     onProjectLoaded={onProjectLoaded}
-                                    onRemixing={onRemixing}
+                                    // onRemixing={onRemixing}
                                     onSetProjectThumbnailer={onSetProjectThumbnailer}
                                     onUpdateProjectData={onUpdateProjectData}
                                     onUpdateProjectId={onUpdateProjectId}
@@ -200,47 +177,6 @@ const PreviewPresentation = ({
                                 />
                             </div>
                         </FlexRow>
-                        {/* <MediaQuery minWidth={frameless.tabletPortrait}>
-                            <FlexRow className="preview-row">
-                                <Stats
-                                    faved={faved}
-                                    favoriteCount={favoriteCount}
-                                    loveCount={loveCount}
-                                    loved={loved}
-                                    projectInfo={projectInfo}
-                                    onFavoriteClicked={onFavoriteClicked}
-                                    onLoveClicked={onLoveClicked}
-                                />
-                            </FlexRow>
-                        </MediaQuery> */}
-                        {/* <FlexRow className={classNames(
-                                    'introduction',
-                                    { fullscreen: isFullScreen }
-                                )}>
-                            跟{projectInfo.author.username}一起学编程
-                            孩子认真完成了作品，请鼓励一下
-                            点赞     展示给更多人
-                            <div className="ttt-tile-image">
-                                <img  className="ttt-tile-image-img" src='http://cdn2.jzcode.cn/assets/static/c214d7d769d9a0f3338b36aa31ac3a9a.jpg'></img>
-                            </div>
-
-                            为什么学习少儿编程
-                            1. 锻炼数理思维
-                            2. 提升解决问题的能力
-                            3. 培养孩子专注力
-                            4. 增强表达能力
-                            课程特色
-                            1. 小班课堂
-                            2. 圆桌教学
-                            3. 充分表达和互动
-                        </FlexRow>
-                        <FlexRow className={classNames(
-                                    'keyboard',
-                                    { fullscreen: isFullScreen }
-                                )}>
-
-得到
-                           </FlexRow> */}
                     </div>
                 </React.Fragment>
             )}

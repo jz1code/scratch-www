@@ -8,6 +8,14 @@
         "dynamicMetaTags": true
     },
     {
+        "name": "simple",
+        "pattern": "^/simple(/editor|(/\\d+(/editor|/fullscreen)?)?)?/?(\\?.*)?$",
+        "routeAlias": "/simple/?$",
+        "view": "preview/simple-preview",
+        "title": "测试",
+        "dynamicMetaTags": true
+    },
+    {
         "name": "components",
         "pattern": "^/components/?$",
         "view": "components/components",
